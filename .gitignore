@@ -1,0 +1,42 @@
+# Logs
+logs/
+*.log
+
+# Dependency directories (Node.js projects)
+node_modules/
+
+# Build output directories
+dist/
+build/
+
+# Parcel, Webpack, or other bundler cache
+.cache/
+
+# Coverage directories (if running tests)
+coverage/
+
+# Environment variable files (if applicable)
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# OS-generated files (MacOS)
+.DS_Store
+
+# OS-generated files (Windows)
+Thumbs.db
+
+# IDE/editor-specific files
+.vscode/
+.idea/
+
+# Ignore local preview/temporary files
+*.swp
+*.tmp
+*.temp
+*.bak
+
+# Output of 'npm pack'
+*.tgz
