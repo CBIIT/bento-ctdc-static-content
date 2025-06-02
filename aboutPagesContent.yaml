@@ -95,7 +95,7 @@
   title: "Support"
   primaryContentImage: https://raw.githubusercontent.com/CBIIT/datacommons-assets/ctdc_Assets/ctdc/images/aboutPages/About_Support.png
   content:
-    - paragraph: "If you have any questions, please contact us at $$[NCICTDCHelpDesk@mail.nih.gov](NCICTDCHelpDesk@mail.nih.gov)$$."
+    - paragraph: "If you have any questions, please contact us at $$[NCICRDC@mail.nih.gov✉️](type: email NCICRDC@mail.nih.gov)$$."
 - page: '/cloud-computing'
   title: "Cloud computing"
   primaryContentImage: https://raw.githubusercontent.com/CBIIT/datacommons-assets/ctdc_Assets/ctdc/images/aboutPages/About_CRDC.png
