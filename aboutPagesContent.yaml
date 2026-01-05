@@ -163,8 +163,6 @@
   content:
     - paragraph: "PUBLIC ACCESS DATA"
     - paragraph: "Public tier datasets contain de-identified aggregated data available to the public without the need for account registration or data access approval."
-    - paragraph: "REGISTERED ACCESS DATA"
-    - paragraph: "Registered tier datasets may contain some individual-level data or data under collaborative agreements that require users to register for access and agree to certain terms of use prior to access. Terms of use vary by study. "
     - paragraph: "CONTROLLED ACCESS DATA"
     - paragraph: "Controlled data within the CTDC include genomic and other potentially sensitive Personal Identifiable Information (PII). To protect the privacy of individuals who have contributed data to clinical studies, researchers who want to access controlled data must register for an  account and apply for data access authorization through the $$[NIH database of Genotypes and Phenotypes](https://dbgap.ncbi.nlm.nih.gov/aa/wga.cgi?page=login)$$ (dbGaP). See instructions below for how to access controlled data.."
     - paragraph: "ACCESSING CONTROLLED DATA IN THE CTDC"

@@ -1,0 +1,21 @@
+# Cancer Moonshot Biobank (CMB) Site-wide Banner Configuration
+# 
+# Controls whether and how the site banner appears at CTDC.
+# - Set banner_show to true to display the banner, or false to hide it.
+# - banner_text: The full message shown to users.
+# - banner_style: Optional map of CSS-in-JS style rules for the banner. 
+#     You can override background, color, padding, fontWeight, etc.
+# 
+# Example usage for GenericBanner component.
+
+banner_show: true  # (true/false) Show or hide this banner
+banner_text: "The Cancer Moonshot Biobank (CMB) data currently at CTDC is preliminary. As additional data is prepared and validated, it will be released to CTDC in stages until complete. CMB data will ultimately cover over 1,000 participants."
+banner_style:
+  background: "#E8F1F7"    # Light blue background
+  color: "#1F3A4D"         # Dark blue text
+  padding: "10px 32px"     # Banner padding
+  fontWeight: 600          # Bold text (numeric CSS font-weight)
+  height: "auto"           # Allow height to grow based on content
+  minHeight: "46px"        # Ensure minimum height
+  textAlign: "center"      # Center the banner text
+  fontSize: "14px"         # Font size
