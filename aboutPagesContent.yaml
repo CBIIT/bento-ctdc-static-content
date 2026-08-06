@@ -3,7 +3,7 @@
   primaryContentImage: https://raw.githubusercontent.com/CBIIT/datacommons-assets/ctdc_Assets/ctdc/images/aboutPages/About_CRDC.png
   content:
     - paragraph: "The Clinical and Translational Data Commons (CTDC) is designed to facilitate the integration and analysis of a wide array of clinical and translational research data. To support this initiative, the CTDC will accept a variety of data types, each crucial for the comprehensive understanding of clinical outcomes and the translational pathway from laboratory and clinical research to clinical applications."
-    - paragraph: "Those interested in submitting data to the CTDC must first fill out a data submission request through $$[the CRDC Submission Portal](https://hub.datacommons.cancer.gov/)$$. Requests will be reviewed to assess alignment with CTDC and CRDC’s mission and overall data requirements. Review times can be expected to be four to six weeks. For more information regarding submission requests and data submission, see $$[CRDC’s Submit Data page](https://datacommons.cancer.gov/submit)$$ or contact $$[NCICRDC@mail.nih.gov✉️](type: email NCICRDC@mail.nih.gov)$$."
+    - paragraph: "Those interested in submitting data to the CTDC must first fill out a data submission request through $$[the CRDC Submission Portal](https://hub.datacommons.cancer.gov/)$$. Requests will be reviewed to assess alignment with CTDC and CRDC's mission and overall data requirements. Review times can be expected to be four to six weeks. For more information regarding submission requests and data submission, see $$[CRDC's Submit Data page](https://datacommons.cancer.gov/submit)$$ or contact $$[NCICRDC@mail.nih.gov](NCICRDC@mail.nih.gov)$$."
     - paragraph: "Below are the primary categories of data the CTDC currently accepts:"
     - paragraph: "$$*De-identified Clinical Data:*$$"
     - listWithDots:
@@ -69,7 +69,7 @@
     - paragraph: "$$#CTDC GUI#$$"
     - paragraph: "The GUI provides users a distilled set of parameters (faceted querying) you can use to explore a subset of the CTDC data model. "
     - paragraph: "$$#CTDC API#$$"
-    - paragraph: "CTDC is based on a Graph database, featuring a GraphQL API (Java) and a React front-end (JavaScript). Each tier in the application stack is designed to be modular and adaptable for a variety of use-cases and scenarios. A $$[GraphQL API](type:internal url:/#/graphql target:_blank)$$ enables querying of the entire data model. The API is provided “as is”: there are no warranties or conditions arising out of usage of these services."
+    - paragraph: "CTDC is based on a Graph database, featuring a GraphQL API (Java) and a React front-end (JavaScript). Each tier in the application stack is designed to be modular and adaptable for a variety of use-cases and scenarios. A $$[GraphQL API](type:internal url:/#/graphql target:_self)$$ enables querying of the entire data model. The API is provided “as is”: there are no warranties or conditions arising out of usage of these services."
     - paragraph: "$$#GITHUB#$$"
     - paragraph: "The CTDC GitHub repository is available for research, usage, forking, and pull requests. The codebase is intended for sharing and building frameworks for related initiatives and projects. The CTDC GitHub repository has documentation about how to access the system, including endpoints and recommendations for tools and example queries. The CTDC team maintains and updates the project and documentation in accordance with major and minor releases."
 - page: '/purpose'
@@ -95,7 +95,7 @@
   title: "Support"
   primaryContentImage: https://raw.githubusercontent.com/CBIIT/datacommons-assets/ctdc_Assets/ctdc/images/aboutPages/About_Support.png
   content:
-    - paragraph: "If you have any questions, please contact us at $$[NCICRDC@mail.nih.gov✉️](type: email NCICRDC@mail.nih.gov)$$."
+    - paragraph: "If you have any questions, please contact us at $$[NCICRDC@mail.nih.gov](NCICRDC@mail.nih.gov)$$."
 - page: '/cloud-computing'
   title: "Cloud computing"
   primaryContentImage: https://raw.githubusercontent.com/CBIIT/datacommons-assets/ctdc_Assets/ctdc/images/aboutPages/About_CRDC.png
@@ -115,7 +115,7 @@
   content:
     - paragraph: "$$~Data Access~$$"
     - paragraph: "     "
-    - paragraph: "The CTDC hosts data with varying access requirements, allowing researchers to work with a wide range of data across studies while also protecting participant privacy. Data deposited within the CTDC is available through three different access tiers including open-access, registered-access, and controlled-access tiers (visit our $$[Request Access](type:internal url:/#/request-access target:_blank )$$ page for more details). Users and their associated institutions are responsible for understanding specific terms of use for each study and adhering to study-specific Data Use Agreement(s) (DUAs), Institutional Review Board policies, and other relevant guidelines. DUAs may be required to access controlled-access tier data for certain trials or studies. If a DUA is required, the authorizing entity will provide it as part of the data request process."
+    - paragraph: "The CTDC hosts data with varying access requirements, allowing researchers to work with a wide range of data across studies while also protecting participant privacy. Data deposited within the CTDC is available through three different access tiers including open-access, registered-access, and controlled-access tiers (visit our $$[Request Access](type:internal url:/#/request-access target:_self )$$ page for more details). Users and their associated institutions are responsible for understanding specific terms of use for each study and adhering to study-specific Data Use Agreement(s) (DUAs), Institutional Review Board policies, and other relevant guidelines. DUAs may be required to access controlled-access tier data for certain trials or studies. If a DUA is required, the authorizing entity will provide it as part of the data request process."
     - paragraph: "     "
     - paragraph: "$$#Re-IdentifIcation#$$"
     - paragraph: "     "
@@ -126,7 +126,7 @@
     - paragraph: "CTDC recommends that users follow standard scientific etiquette and practices when working with CTDC-managed data or publishing results generated using data accessed via the CTDC.  "
     - paragraph: "     "
     - paragraph: "Please acknowledge in all oral or written presentations, disclosures, or publications: "
-    - paragraph: "$$>1>$$. Clinical and Translational Data Commons, including URL ($$[clinical.datacommons.cancer.gov](type:internal url:/#/ target:_blank )$$)"
+    - paragraph: "$$>1>$$. Clinical and Translational Data Commons, including URL ($$[clinical.datacommons.cancer.gov](type:internal url:/#/ target:_self )$$)"
     - paragraph: "$$>2>$$. Study dataset(s) accessed (e.g. Cancer Moonshot Biobank)"
     - paragraph: "$$>3>$$. Study ID (e.g. NCTXXXXX) and/or accession number(s) (PHSXXXX) "
     - paragraph: "$$>4>$$. Digital Object Identifier (DOI) "
@@ -154,7 +154,7 @@
   title: "Data Model"
   content:
     - paragraph: "The CTDC data model is a representation of how data in the CTDC are arranged relative to each other. The data model is flexibly designed to accommodate an ever-expanding CTDC database."
-    - paragraph: "The SVG graphic below represents the current CTDC data model consisting of data nodes, node properties, and relationships (edges). It provides a comprehensive mapping of the system data, part of which may be viewed in the application and user interface. Additional nodes and properties beyond those presented on the front-end are available for inspection and querying via API at $$[https://clinical.datacommons.cancer.gov/#/graphql.](type:internal url:/#/graphql target:_blank )$$ "
+    - paragraph: "The SVG graphic below represents the current CTDC data model consisting of data nodes, node properties, and relationships (edges). It provides a comprehensive mapping of the system data, part of which may be viewed in the application and user interface. Additional nodes and properties beyond those presented on the front-end are available for inspection and querying via API at $$[https://clinical.datacommons.cancer.gov/#/graphql.](type:internal url:/#/graphql target:_self )$$ "
     - paragraph: "Information about the graphic data model, including the model description files, can be found on GitHub at $$[https://github.com/CBIIT/ctdc-model](https://github.com/CBIIT/ctdc-model)$$."
   secondaryZoomImageTitle: "The CTDC Data Model"
   secondaryZoomImage: 'https://raw.githubusercontent.com/CBIIT/ctdc-model/ctdc-model/model-desc/ctdc-model.svg'
