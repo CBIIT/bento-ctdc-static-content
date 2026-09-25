@@ -9,6 +9,12 @@ This guide explains how to edit the CTDC `/user/login` page from this static-con
 
 The frontend loads this file from the static-content base URL configured by `REACT_APP_STATIC_CONTENT_URL`, using the relative path `/login/loginView.yaml`.
 
+Frontend implementation details live in the
+[CTDC UI login README](https://github.com/CBIIT/crdc-ctdc-ui/blob/develop/src/pages/login/README.md).
+The CTDC UI repo also keeps a bundled fallback copy at
+`src/assets/login/loginView.yaml`; that fallback is used only when remote
+static content cannot load or parse.
+
 Relative asset paths are resolved from `login/loginView.yaml`. For example:
 
 ```yaml
@@ -151,7 +157,7 @@ sections:
       - paragraph: "Second group."
 ```
 
-Do not repeat `blocks:` at the same indentation level. YAML parsers can reject duplicate keys or silently drop one of them. The login frontend uses `js-yaml`, which rejects duplicate keys and shows a "Login page content is not valid YAML" error.
+Do not repeat `blocks:` at the same indentation level. YAML parsers can reject duplicate keys or silently drop one of them. The login frontend uses `js-yaml`, which rejects duplicate keys, falls back to the bundled frontend login content, and shows the banner "Some content could not be loaded." The detailed error title is logged for developers; editors should validate YAML and preview the branch before merging.
 
 ## Section Block Order
 
@@ -248,7 +254,7 @@ sections:
 
 Only `rasLogin` sections show the RAS login button. Put `rasButtonText` inside the RAS text block group. On wider screens, the button displays to the right of that group; on smaller screens, it stacks below it.
 
-The RAS login button destination is not configured in static content. It is controlled by the frontend environment variable `REACT_APP_RAS_AUTHORIZE_URL`. The frontend assumes this URL is configured.
+The RAS login button destination is not configured in static content. It is controlled by the frontend environment variable `REACT_APP_RAS_AUTHORIZE_URL`. If that URL is missing, unresolved, or invalid, the frontend disables the RAS button and shows the configured unavailable message.
 
 ## Content Box Sections
 
@@ -396,7 +402,6 @@ Login content supports the Bento-style `$$...$$` tokens used by CTDC About page 
 | `$$%space%$$` | Small vertical space. |
 | `$$[label](https://example.org)$$` | Link. |
 | `$$[label](target:_self url:https://example.org)$$` | Same-tab link with no outbound icon. |
-| `$${link:https://example.org/file.pdf,title:Download file}$$` | Download link. |
 
 Examples:
 
@@ -407,6 +412,12 @@ blocks:
   - paragraph: "Contact $$[NCICRDC@mail.nih.gov](NCICRDC@mail.nih.gov)$$ for help."
   - paragraph: "Open $$[GraphQL](url:/#/graphql target:_self)$$ in the same app."
   - paragraph: "$$%space%$$"
+```
+
+Download links use the Bento download object inside a paragraph or list item:
+
+```yaml
+- paragraph: "$${link:https://example.org/file.pdf,title:Download Guide}$$"
 ```
 
 Do not use raw HTML inside block fields.
@@ -446,7 +457,9 @@ Outbound icon behavior is based on the URL and target:
 - Email links such as `mailto:NCICRDC@mail.nih.gov` do not show the outbound icon.
 - Links with `target:_self` do not show the outbound icon.
 
-Standard inline links like `[Label](https://example.org)` are supported for simple text, but Bento-style links are preferred because they support `target:_self`, download links, and the correct outbound icon rules.
+Bento-style tokens are required for inline links and emphasis. Plain
+Markdown-style `[Label](https://example.org)`, `**bold**`, and `*italic*`
+text is displayed literally.
 
 Login link styling is automatic for links in `blocks`. No extra YAML switch is needed.
 
@@ -597,6 +610,27 @@ blocks:
 
 Use tables sparingly on the login page because accordions and sidebars have limited width.
 
+## Previewing Changes
+
+To preview a static-content branch in a local frontend, point the frontend base
+URL to the raw GitHub branch root. The frontend appends `/login/loginView.yaml`
+automatically.
+
+```text
+REACT_APP_STATIC_CONTENT_URL=https://raw.githubusercontent.com/CBIIT/bento-ctdc-static-content/refs/heads/<branch-name>
+```
+
+For local login-button testing, also configure:
+
+```text
+REACT_APP_RAS_AUTHORIZE_URL=<RAS authorize URL>
+```
+
+If the branch YAML cannot load or parse, the page renders the bundled fallback
+from `crdc-ctdc-ui/src/assets/login/loginView.yaml` and displays the banner
+"Some content could not be loaded." Always confirm your branch content is
+visible on `/user/login`, not only that the page renders.
+
 ## Editing Checklist
 
 Before opening a pull request:
@@ -615,4 +649,5 @@ Before opening a pull request:
 - Confirm intentional spacing uses `$$%space%$$`.
 - Confirm links use full URLs, `mailto:`, or CTDC same-app paths such as `/#/graphql`.
 - Confirm the contact button uses `href: mailto:NCICRDC@mail.nih.gov` when it should open an email client.
+- Confirm the fallback banner is not visible while previewing your branch.
 - Load `/user/login` and verify text, links, images, accordions, video playback, and buttons.
