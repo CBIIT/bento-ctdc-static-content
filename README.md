@@ -20,3 +20,18 @@ Steps to contribute in this repository:
 
 >Here is the flow of how static content changes will flow from branch to branch: <br />
 "XYZ Branch" -PR-> "develop" -PR-> "qa" -PR-> "stage" -PR-> "production"
+
+## About Page Content
+
+`aboutPagesContent.yaml` controls CTDC informational pages. Each entry maps to a frontend route with the `page` key.
+
+## Site-Wide Banner Content
+
+`banners/banner_content.yaml` controls the site-wide banner text, visibility, and style.
+
+## Login Page Content
+
+`login/loginView.yaml` controls the `/user/login` page, including the RAS copy, login accordion rows, buttons, help content, and warning text. Related assets live under `login/assets/`.
+
+See the login page editing and configuration instructions: 
+- [login/README.md](login/README.md)
