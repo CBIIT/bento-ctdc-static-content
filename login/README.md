@@ -7,7 +7,11 @@ This guide explains how to edit the CTDC `/user/login` page from this static-con
 - `login/loginView.yaml`: Main content file for the login page.
 - `login/assets/`: Images and icons referenced by `login/loginView.yaml`.
 
-The frontend loads this file from the static-content base URL configured by `REACT_APP_STATIC_CONTENT_URL`, using the relative path `/login/loginView.yaml`.
+The frontend loads this file from the static-content base URL configured by
+`REACT_APP_STATIC_CONTENT_URL`, using the relative path
+`/login/loginView.yaml`. If the remote file cannot load, times out, or cannot
+be parsed, the frontend shows a dismissible banner and renders its bundled
+fallback copy so login remains available.
 
 Frontend implementation details live in the
 [CTDC UI login README](https://github.com/CBIIT/crdc-ctdc-ui/blob/develop/src/pages/login/README.md).
@@ -254,7 +258,11 @@ sections:
 
 Only `rasLogin` sections show the RAS login button. Put `rasButtonText` inside the RAS text block group. On wider screens, the button displays to the right of that group; on smaller screens, it stacks below it.
 
-The RAS login button destination is not configured in static content. It is controlled by the frontend environment variable `REACT_APP_RAS_AUTHORIZE_URL`. If that URL is missing, unresolved, or invalid, the frontend disables the RAS button and shows the configured unavailable message.
+The RAS login button destination is not configured in static content. It is
+controlled by the frontend environment variable `REACT_APP_RAS_AUTHORIZE_URL`.
+That value must be an absolute `http://` or `https://` URL. If the URL is
+missing, unresolved, relative, or invalid, the frontend disables the RAS button
+and shows the configured unavailable message.
 
 ## Content Box Sections
 
@@ -457,6 +465,13 @@ Outbound icon behavior is based on the URL and target:
 - Email links such as `mailto:NCICRDC@mail.nih.gov` do not show the outbound icon.
 - Links with `target:_self` do not show the outbound icon.
 
+Supported hrefs include absolute `http://` and `https://` URLs, `mailto:`,
+`tel:`, hash links, app/root-relative links, dot-relative links, and simple
+relative paths without a scheme. Raw email addresses in Bento link tokens are
+converted to `mailto:` links. Protocol-relative URLs such as `//example.org`
+and unsupported schemes such as `javascript:`, `data:`, `file:`, `blob:`, or
+`ftp:` are not rendered as links. Download links use the same validation.
+
 Bento-style tokens are required for inline links and emphasis. Plain
 Markdown-style `[Label](https://example.org)`, `**bold**`, and `*italic*`
 text is displayed literally.
@@ -536,17 +551,17 @@ Supported fields:
 
 | Field | Use |
 | --- | --- |
-| `ariaLabel` | Accessible label for the Help panel landmark. |
+| `ariaLabel` | Accessible label for the Help panel landmark. Defaults to `Help and Support`. |
 | `headerText` | Help panel header text. |
 | `blocks` | Generic Help panel blocks. |
 | `tutorial.title` | Tutorial heading. |
 | `tutorial.blocks` | Tutorial body blocks. |
 | `tutorial.videoUrl` | Hosted tutorial video URL. |
-| `tutorial.playButtonAriaLabel` | Accessible label for the play button. |
+| `tutorial.playButtonAriaLabel` | Accessible label for the play button. Defaults to `Play tutorial video`. |
 | `contact.title` | Contact section heading. |
 | `contact.blocks` | Contact section body blocks. |
 | `contact.buttonText` | Contact button label. |
-| `contact.href` | Contact button URL, such as `mailto:NCICRDC@mail.nih.gov`. |
+| `contact.href` | Contact button URL, such as `mailto:NCICRDC@mail.nih.gov`. Invalid or unsupported hrefs are not applied. |
 | `contact.target` | Optional link target, such as `_self` or `_blank`. |
 | `contact.rel` | Optional relationship value. New-tab contact links default to `noopener noreferrer`. |
 
@@ -578,7 +593,9 @@ sections:
           - rasButtonText: Login with RAS
 ```
 
-The RAS button URL comes from the frontend environment variable `REACT_APP_RAS_AUTHORIZE_URL`, not from `login/loginView.yaml`.
+The RAS button URL comes from the frontend environment variable
+`REACT_APP_RAS_AUTHORIZE_URL`, not from `login/loginView.yaml`. The value must
+be an absolute `http://` or `https://` URL.
 
 Contact button:
 
@@ -590,7 +607,9 @@ help:
     target: _self
 ```
 
-Use `mailto:` for email buttons. If `target: _blank` is used, the frontend applies `rel: noopener noreferrer` by default unless `rel` is provided in YAML.
+Use `mailto:` for email buttons. If `target: _blank` is used, the frontend
+applies `rel: noopener noreferrer` by default unless `rel` is provided in YAML.
+Unsafe or unsupported contact button hrefs are ignored by the frontend.
 
 ## Tables
 
@@ -626,10 +645,10 @@ For local login-button testing, also configure:
 REACT_APP_RAS_AUTHORIZE_URL=<RAS authorize URL>
 ```
 
-If the branch YAML cannot load or parse, the page renders the bundled fallback
-from `crdc-ctdc-ui/src/assets/login/loginView.yaml` and displays the banner
-"Some content could not be loaded." Always confirm your branch content is
-visible on `/user/login`, not only that the page renders.
+If the branch YAML cannot load, times out, or cannot parse, the page renders the
+bundled fallback from `crdc-ctdc-ui/src/assets/login/loginView.yaml` and
+displays the banner "Some content could not be loaded." Always confirm your
+branch content is visible on `/user/login`, not only that the page renders.
 
 ## Editing Checklist
 
@@ -647,7 +666,7 @@ Before opening a pull request:
 - Confirm each accordion entry has a `title` and `blocks`.
 - Confirm nested lists use `text` plus a nested list key.
 - Confirm intentional spacing uses `$$%space%$$`.
-- Confirm links use full URLs, `mailto:`, or CTDC same-app paths such as `/#/graphql`.
+- Confirm links use supported hrefs such as full `http://` or `https://` URLs, `mailto:`, `tel:`, or CTDC same-app paths such as `/#/graphql`.
 - Confirm the contact button uses `href: mailto:NCICRDC@mail.nih.gov` when it should open an email client.
 - Confirm the fallback banner is not visible while previewing your branch.
 - Load `/user/login` and verify text, links, images, accordions, video playback, and buttons.
