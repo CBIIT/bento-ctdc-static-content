@@ -1,22 +1,55 @@
 # bento-ctdc-static-content
-This is repository that is only created to hold static content of CTDC Project. It will include branches for environments like DEV, QA, STAGE, PROD. 
 
- Environment | Linked Branch
-| :---: | :---: 
-CTDC-PROD  | production 🔒
-CTDC-STAGE | stage 🔒
-CTDC-QA | qa 🔒
-CTDC-DEV | develop 🔒
+## Overview
 
-> ❗ NOTE: Branches are protected. No direct commit can be made on any of thses branches.
+This repository stores static content for the CTDC project. Content is managed
+through environment-specific branches for development, QA, stage, and
+production.
 
-Steps to contribute in this repository: 
-1. Create a new and seperate branch based on "develop" branch, let's call it "xyz". (Don't forget to git pull the develop branch to keep it up to date before making a new branch)
-2. Make changes on "xyz" branch, multiple commits are allowed. Commit those changes and push those commits to GitHub. 
-3. Create a Pull Request (PR) from "XYZ" to "develop" branch. 
-4. Get that Pull Request (PR) reviewed by at least one reviwer to get the PR Approved.
-5. Reviewer needs to merge that PR into "develop" (Which is the base branch for this PR). 
-6. Reviewer needs to delete "xyz" branch to keep the repository clean. 
+## Environment Branches
 
->Here is the flow of how static content changes will flow from branch to branch: <br />
-"XYZ Branch" -PR-> "develop" -PR-> "qa" -PR-> "stage" -PR-> "production"
+| Environment | Linked branch |
+| --- | --- |
+| CTDC-DEV | `develop` |
+| CTDC-QA | `qa` |
+| CTDC-STAGE | `stage` |
+| CTDC-PROD | `production` |
+
+> **Note:** Environment branches are protected. Do not commit directly to
+> `develop`, `qa`, `stage`, or `production`.
+
+## Contribution Workflow
+
+1. Update your local `develop` branch.
+2. Create a feature branch from `develop`, for example `XYZ`.
+3. Make and commit your changes on the feature branch.
+4. Push the feature branch to GitHub.
+5. Open a pull request from the feature branch into `develop`.
+6. Request at least one reviewer and wait for approval.
+7. After the pull request is merged, delete the feature branch if it is no longer needed.
+
+## Promotion Flow
+
+Static content changes are promoted through environment branches:
+
+```text
+feature branch (XYZ) --PR--> develop --PR--> qa --PR--> stage --PR--> production
+```
+
+## Content Areas
+
+### About Page Content
+
+`aboutPagesContent.yaml` controls CTDC informational pages. Each entry maps to a frontend route with the `page` key.
+
+### Site-Wide Banner Content
+
+`banners/banner_content.yaml` controls the site-wide banner text, visibility, and style.
+
+### Login Page Content
+
+`login/loginView.yaml` controls the `/user/login` page content. Related assets live under `login/assets/`.
+
+See the login page editing and configuration instructions:
+
+- [login/README.md](login/README.md)
