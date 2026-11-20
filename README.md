@@ -53,3 +53,9 @@ feature branch (XYZ) --PR--> develop --PR--> qa --PR--> stage --PR--> production
 See the login page editing and configuration instructions:
 
 - [login/README.md](login/README.md)
+
+### Study Repository Links
+
+`repositories/repositories.yml` controls the parent repository names, aliases, and
+general portal links displayed on the Studies page. See the
+[repository editing guide](repositories/README.md) for configuration and publishing instructions.

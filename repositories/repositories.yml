@@ -1,0 +1,15 @@
+# Parent image repositories displayed in the Studies page's Additional CRDC Nodes tooltip.
+# repository_name is the display name (prefer the repository acronym).
+# Names and aliases match image_collection.repository_name ignoring case and outer spaces.
+# repository_url is the general portal URL, never an image_collection_url or DOI.
+# Publish changes through the static-content environment branches; no application rebuild is needed.
+# Unlisted names remain visible without a link. See README.md for editing and cache behavior.
+repositories:
+  - repository_name: TCIA
+    repository_url: https://nbia.cancerimagingarchive.net/
+    aliases:
+      - The Cancer Imaging Archive
+  - repository_name: IDC
+    repository_url: https://portal.imaging.datacommons.cancer.gov/
+    aliases:
+      - Imaging Data Commons
